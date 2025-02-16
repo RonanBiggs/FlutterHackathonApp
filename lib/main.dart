@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'post_widget.dart';
 import 'example_page.dart';
-import '../ios/add_posts.dart';
+import '../add_posts.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,22 +16,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'App Name',
       theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
       home: const MyHomePage(title: 'App Name'),
       routes: {
         '/second': (context) => const SecondPage(),
         '/create': (context) => const AddPostPage(),
       },
-            debugShowCheckedModeBanner: false, // Remove the debug banner
-
-
-
+      debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
-
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -41,9 +37,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- // int _counter = 0;
+  // int _counter = 0;
 
- /* void _incrementCounter() {
+  /* void _incrementCounter() {
     setState(() {
      _counter++;
     });
@@ -66,20 +62,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
-actions: <Widget>[
+        actions: <Widget>[
           IconButton(
-            
             icon: const Icon(Icons.arrow_forward),
             onPressed: () {
-              Navigator.pushNamed(context, '/second'); // Navigate to the second page
+              Navigator.pushNamed(
+                context,
+                '/second',
+              ); // Navigate to the second page
             },
-
           ),
-          IconButton( // Button in the AppBar
+          IconButton(
+            // Button in the AppBar
             icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.pushNamed(context, '/create');
@@ -90,79 +88,74 @@ actions: <Widget>[
             onPressed: () {
               if (isLoggedIn) {
                 _logout();
-              }
-              else {
+              } else {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginPage(
-                      onLoginSuccess: _loginSuccess, // Pass callback for login success
-                    ),
+                    builder:
+                        (context) => LoginPage(
+                          onLoginSuccess:
+                              _loginSuccess, // Pass callback for login success
+                        ),
                   ),
                 );
               }
             },
           ),
         ],
-        
       ),
       body: Center(
-
         child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('posts:'),
-            Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('posts:'),
+              Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+
+                child: Column(
+                  children: <Widget>[
+                    PostWidget(
+                      imagePath: 'assets/dog.png',
+                      description: 'a nice dog',
+                    ),
+                    PostWidget(
+                      imagePath: 'assets/dog.png',
+                      description: 'this is the same dog',
+                    ),
+                    PostWidget(
+                      imagePath: 'assets/dog.png',
+                      description: 'this is the same dog',
+                    ),
+                    PostWidget(
+                      imagePath: 'assets/dog.png',
+                      description: 'this is the same dog',
+                    ),
+                    PostWidget(
+                      imagePath: 'assets/dog.png',
+                      description: 'this is the same dog',
+                    ),
+                    PostWidget(
+                      imagePath: 'assets/dog.png',
+                      description: 'this is the same dog',
+                    ),
+                    PostWidget(
+                      imagePath: 'assets/dog.png',
+                      description: 'this is the same dog',
+                    ),
+                  ],
+                ),
               ),
-            
-            child: Column(
-              children: <Widget>[
-                PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'a nice dog',
-                  ),
-                PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
-                ),
-                PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
-                ),
-                PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
-                ),
-                PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
-                ),
-                PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
-                ),
-                PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
-                ),
-              ],
-            ),
-            
+            ],
+          ),
         ),
-        ],
-        ),
-        ),
-      
 
-    
-
- /*       child: Column(
+        /*       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
@@ -222,17 +215,13 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               TextField(
                 controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email:',
-                ),
+                decoration: InputDecoration(labelText: 'Email:'),
               ),
               const SizedBox(height: 16),
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password:',
-                ),
+                decoration: InputDecoration(labelText: 'Password:'),
               ),
               const SizedBox(height: 24),
               ElevatedButton(onPressed: _login, child: const Text('Submit')),
