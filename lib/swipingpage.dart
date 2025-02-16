@@ -16,7 +16,7 @@ class _SwipingPageState extends State<SwipingPage> {
     SwipePostWidget(imagePath: 'groceryhaul4.jpeg', description: 'Meet me at PCV'),
     SwipePostWidget(imagePath: 'groceryhaul5.jpg', description: 'Free food!'),
     SwipePostWidget(imagePath: 'groceryhaul6.webp', description: 'Anyone need?'),
-    SwipePostWidget(imagePath: 'groceryhaul7.jpeg', description: 'Free Leftovers!!'),
+    SwipePostWidget(imagePath: 'groceryhaul7.jpg', description: 'Free Leftovers!!'),
   ];
 
   @override
