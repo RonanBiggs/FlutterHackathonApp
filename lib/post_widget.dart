@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class PostWidget extends StatelessWidget {
   final String imagePath;
   final String description;
-
+ final void Function(String, String) onMessage; 
   const PostWidget({
     Key? key,
     required this.imagePath,
     required this.description,
+    required this.onMessage,
   }) : super(key: key);
 
   @override
@@ -32,6 +33,14 @@ class PostWidget extends StatelessWidget {
             description,
             style: const TextStyle(fontSize: 60),
           ),
+          ElevatedButton(
+          onPressed: () {
+            // Pass both description and imagePath to onMessage
+            onMessage(description, imagePath); // Pass imagePath along with description
+          },
+          child: const Text('Message'),
+        ),
+        const SizedBox(height: 16),
         ],
       ),
     );
