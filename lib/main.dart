@@ -148,19 +148,19 @@ actions: <Widget>[
                   description: 'leftover groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/groceryhaul7.jpeg',
+                  imagePath: 'assets/groceryhaul7.jpg',
                   description: 'some extra groceries!',
                 ),
                 PostWidget(
-                  imagePath: 'assets/groceryhaul8.jpeg',
+                  imagePath: 'assets/groceryhaul8.jpg',
                   description: 'more extra groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/groceryhaul9.jpeg',
+                  imagePath: 'assets/groceryhaul9.jpg',
                   description: 'some more groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/groceryhaul10.jpeg',
+                  imagePath: 'assets/grocery10.jpg',
                   description: 'extra food for anyone who needs!',
                 ),
               ],

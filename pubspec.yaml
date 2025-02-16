@@ -75,10 +75,10 @@ flutter:
       - assets/groceryhaul4.jpeg
       - assets/groceryhaul5.jpg
       - assets/groceryhaul6.webp
-      - assets/groceryhaul7.jpeg
-      - assets/groceryhaul8.jpeg
-      - assets/groceryhaul9.jpeg
-      - assets/groceryhaul10.jpeg
+      - assets/groceryhaul7.jpg
+      - assets/groceryhaul8.jpg
+      - assets/groceryhaul9.jpg
+      - assets/grocery10.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
