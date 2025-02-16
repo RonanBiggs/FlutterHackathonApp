@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/swipingpage.dart';
 import 'post_widget.dart';
+//<<<<<<< Updated upstream
+import 'add_posts.dart';
+//=======
 import 'example_page.dart';
-//import 'add_posts.dart';
+import 'add_posts.dart';
+//>>>>>>> Stashed changes
 void main() {
   runApp(const MyApp());
 }
@@ -19,8 +24,14 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'App Name'),
       routes: {
-        '/second': (context) => const SecondPage(),
+//<<<<<<< Updated upstream
+        '/second': (context) => const SwipingPage(),
       //  '/create': (context) => const AddPostPage(),
+      //'/second': (context) => const SwipingPage(),
+//=======
+      //  '/second': (context) => const SecondPage(),
+        '/create': (context) => const AddPostPage(),
+//>>>>>>> Stashed changes
       },
             debugShowCheckedModeBanner: false, // Remove the debug banner
 
@@ -57,18 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
 actions: <Widget>[
-          IconButton(
-            
-            icon: const Icon(Icons.arrow_forward),
-            onPressed: () {
-              Navigator.pushNamed(context, '/second'); // Navigate to the second page
-            },
 
-          ),
           IconButton( // Button in the AppBar
             icon: const Icon(Icons.add),
             onPressed: () {
-            //d  Navigator.pushNamed(context, '/create');
+              Navigator.pushNamed(context, '/create');
             },
           ),
 
@@ -81,7 +85,7 @@ actions: <Widget>[
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('posts:'),
+            const Text('Feed'),
             Container(
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.all(8.0),
