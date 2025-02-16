@@ -28,8 +28,8 @@ class _SwipingPageState extends State<SwipingPage> {
       ),
       body: Center(
         child: SizedBox(
-          height: 400, // Fixed height for the card stack
-          width: 300, // Fixed width for the card stack
+          height: 600, // Fixed height for the card stack
+          width: 400, // Fixed width for the card stack
           child: Stack(
             clipBehavior: Clip.none, // Allow cards to overflow slightly
             children: _posts.map((post) {
@@ -65,8 +65,8 @@ class _SwipingPageState extends State<SwipingPage> {
                     elevation: 4,
                     margin: const EdgeInsets.all(8),
                     child: SizedBox(
-                      height: 400,
-                      width: 300,
+                      height: 600,
+                      width: 400,
                       child: Column(
                         children: [
                           Expanded(
