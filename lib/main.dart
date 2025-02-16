@@ -3,9 +3,10 @@ import 'package:hackathon/swipingpage.dart';
 import 'post_widget.dart';
 //<<<<<<< Updated upstream
 import 'add_posts.dart';
+import 'map_page.dart';
 //=======
-import 'example_page.dart';
-import 'add_posts.dart';
+//import 'example_page.dart';
+//import 'add_posts.dart';
 //>>>>>>> Stashed changes
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
 //<<<<<<< Updated upstream
         '/second': (context) => const SwipingPage(),
-      //  '/create': (context) => const AddPostPage(),
+        '/map': (context) => const MapPage(),
       //'/second': (context) => const SwipingPage(),
 //=======
       //  '/second': (context) => const SecondPage(),
@@ -75,6 +76,20 @@ actions: <Widget>[
               Navigator.pushNamed(context, '/create');
             },
           ),
+          IconButton( // Button in the AppBar
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.pushNamed(context, '/second');
+            },
+          ),
+          IconButton( // Button in the AppBar
+            icon: const Icon(Icons.arrow_forward),
+            onPressed: () {
+              Navigator.pushNamed(context, '/map');
+            },
+          ),
+
+
 
         ],
         
@@ -94,41 +109,60 @@ actions: <Widget>[
                 borderRadius: BorderRadius.circular(8),
               ),
             
+             child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('posts:'),
+            Container(
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(8), 
+              ),
+              
+            
             child: Column(
               children: <Widget>[
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'a nice dog',
+                  imagePath: 'assets/groceryhaul4.jpeg',
+                  description: 'groceries in SLO',
                   ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul5.jpg',
+                  description: 'extra food!',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul6.webp',
+                  description: 'leftover groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul7.jpeg',
+                  description: 'some extra groceries!',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul8.jpeg',
+                  description: 'more extra groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul9.jpeg',
+                  description: 'some more groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul10.jpeg',
+                  description: 'extra food for anyone who needs!',
                 ),
               ],
             ),
+            ),
+          ],
+
             
         ),
-        ],
+      ),
+            ),
+          ],
         ),
         ),
       
