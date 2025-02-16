@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'post_widget.dart'; // Import your PostWidget
+import 'swipeposts_widget.dart'; // Import your PostWidget
 
 class SwipingPage extends StatefulWidget {
   const SwipingPage({super.key});
@@ -9,10 +9,10 @@ class SwipingPage extends StatefulWidget {
 }
 
 class _SwipingPageState extends State<SwipingPage> {
-  List<PostWidget> _posts = [
-    PostWidget(imagePath: 'groceries1.jpeg', description: 'Meet me at PCV'),
-    PostWidget(imagePath: 'groceries2.jpg', description: 'Anyone want these?'),
-    PostWidget(imagePath: 'groceries3.jpg', description: 'Free Leftovers!!'),
+  List<SwipePostWidget> _posts = [
+    SwipePostWidget(imagePath: 'groceries1.jpeg', description: 'Meet me at PCV'),
+    SwipePostWidget(imagePath: 'groceries2.jpg', description: 'Anyone want these?'),
+    SwipePostWidget(imagePath: 'groceries3.jpg', description: 'Free Leftovers!!'),
     // Add more posts as needed
   ];
 

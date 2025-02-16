@@ -4,47 +4,35 @@ class PostWidget extends StatelessWidget {
   final String imagePath;
   final String description;
 
-  const PostWidget({super.key, required this.imagePath, required this.description});
+  const PostWidget({
+    Key? key,
+    required this.imagePath,
+    required this.description,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.all(8),
-      child: SizedBox(
-        height: 400,
-        width: 300,
-        child: InkWell( // Added InkWell for tap functionality (optional)
-          onTap: () {
-            // Handle tap if needed
-            print("Tapped on: $description");
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch text to card width
-            children: [
-              Expanded(
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, object, stackTrace) {
-                    // Handle image loading errors
-                    return const Center(child: Icon(Icons.error)); // Or a placeholder
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  description,
-                  style: const TextStyle(fontSize: 20),
-                  textAlign: TextAlign.center, // Center the text
-                  maxLines: 2, // Limit to two lines
-                  overflow: TextOverflow.ellipsis, // Add ellipsis if it overflows
-                ),
-              ),
-            ],
+    return Container(
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        children: <Widget>[
+          Image.asset(
+            imagePath,
+            fit: BoxFit.cover, // Or BoxFit.contain, BoxFit.fill, etc. as needed
+            width: MediaQuery.of(context).size.width/2, // Path to your local image
+            height: 100,
           ),
-        ),
+          const SizedBox(height: 8),
+          Text(
+            description,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ],
       ),
     );
   }

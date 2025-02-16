@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon/swipingpage.dart';
 import 'post_widget.dart';
-import 'example_page.dart';
 //import 'add_posts.dart';
 void main() {
   runApp(const MyApp());
