@@ -4,7 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
 
-// AddPostPage (This is the screen for creating a post)
+// AddPostPage (Create Post Screen)
 class AddPostPage extends StatefulWidget {
   const AddPostPage({super.key});
 
@@ -16,7 +16,7 @@ class _AddPostPageState extends State<AddPostPage> {
   final _formKey = GlobalKey<FormState>();
   String _description = '';
   XFile? _image;
-  final List<String> _foodTypes = [];
+  late List<bool> _foodTypes;
   DateTime? _expiryDate;
   String _location = '';
   List<Placemark>? _placemarks;
@@ -25,6 +25,12 @@ class _AddPostPageState extends State<AddPostPage> {
     'Vegan', 'Vegetarian', 'Gluten Free', 'Fruits', 'Grains',
     'Canned Goods', 'Protein', 'Other'
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _foodTypes = List.filled(_allFoodTypes.length, false);
+  }
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
@@ -58,6 +64,7 @@ class _AddPostPageState extends State<AddPostPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              // ... (Image, description, expiry date, location fields)
               Center(
                 child: GestureDetector(
                   onTap: _pickImage,
@@ -114,24 +121,25 @@ class _AddPostPageState extends State<AddPostPage> {
                   _location = value;
                 },
               ),
+
+
+
               const Text('Type of Food:'),
               Wrap(
                 children: _allFoodTypes.map((type) {
+                  final index = _allFoodTypes.indexOf(type);
                   return CheckboxListTile(
                     title: Text(type),
-                    value: _foodTypes.contains(type),
+                    value: _foodTypes[index],
                     onChanged: (bool? value) {
                       setState(() {
-                        if (value!) {
-                          _foodTypes.add(type);
-                        } else {
-                          _foodTypes.remove(type);
-                        }
+                        _foodTypes[index] = value!;
                       });
                     },
                   );
                 }).toList(),
               ),
+
               Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -143,7 +151,7 @@ class _AddPostPageState extends State<AddPostPage> {
                         'imagePath': _image?.path,
                         'expiryDate': _expiryDate?.toIso8601String(),
                         'location': _location,
-                        'foodTypes': _foodTypes,
+                        'foodTypes': _foodTypes, // Store the boolean list
                       };
 
                       Navigator.pop(context, postData);
