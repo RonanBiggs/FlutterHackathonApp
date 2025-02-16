@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'App Name'),
       routes: {
-        '/second': (context) => const SecondPage(),
+        '/second': (context) => const SwipingPage(),
       //  '/create': (context) => const AddPostPage(),
       //'/second': (context) => const SwipingPage(),
       },
@@ -83,7 +83,7 @@ actions: <Widget>[
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('posts:'),
+            const Text('Feed'),
             Container(
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.all(8.0),
