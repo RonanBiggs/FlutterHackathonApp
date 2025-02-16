@@ -25,12 +25,12 @@ class PostWidget extends StatelessWidget {
             imagePath,
             fit: BoxFit.cover, // Or BoxFit.contain, BoxFit.fill, etc. as needed
             width: MediaQuery.of(context).size.width/2, // Path to your local image
-            height: 100,
+            height: 800,
           ),
           const SizedBox(height: 8),
           Text(
             description,
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 60),
           ),
         ],
       ),

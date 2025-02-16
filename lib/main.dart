@@ -100,7 +100,12 @@ actions: <Widget>[
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Feed'),
+            const Text('Home Page',
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
+            ),
             Container(
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.all(8.0),
@@ -113,7 +118,12 @@ actions: <Widget>[
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('posts:'),
+            const Text('Your Feed',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+            ),
             Container(
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.all(8.0),
