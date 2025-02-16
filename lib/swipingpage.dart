@@ -10,10 +10,13 @@ class SwipingPage extends StatefulWidget {
 
 class _SwipingPageState extends State<SwipingPage> {
   List<SwipePostWidget> _posts = [
-    SwipePostWidget(imagePath: 'groceries1.jpeg', description: 'Meet me at PCV'),
+    SwipePostWidget(imagePath: 'groceries1.jpeg', description: 'First Come First Serve!!'),
     SwipePostWidget(imagePath: 'groceries2.jpg', description: 'Anyone want these?'),
-    SwipePostWidget(imagePath: 'groceries3.jpg', description: 'Free Leftovers!!'),
-    // Add more posts as needed
+    SwipePostWidget(imagePath: 'groceries3.jpg', description: 'Clearing out my fridge!'),
+    SwipePostWidget(imagePath: 'groceryhaul4.jpeg', description: 'Meet me at PCV'),
+    SwipePostWidget(imagePath: 'groceryhaul5.jpg', description: 'Free food!'),
+    SwipePostWidget(imagePath: 'groceryhaul6.webp', description: 'Anyone need?'),
+    SwipePostWidget(imagePath: 'groceryhaul7.jpeg', description: 'Free Leftovers!!'),
   ];
 
   @override
