@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'post_widget.dart';
 import 'example_page.dart';
-import 'add_posts.dart';
+//import 'add_posts.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'App Name'),
       routes: {
         '/second': (context) => const SecondPage(),
-        '/create': (context) => const AddPostPage(),
+      //  '/create': (context) => const AddPostPage(),
       },
             debugShowCheckedModeBanner: false, // Remove the debug banner
 
@@ -68,7 +68,7 @@ actions: <Widget>[
           IconButton( // Button in the AppBar
             icon: const Icon(Icons.add),
             onPressed: () {
-              Navigator.pushNamed(context, '/create');
+            //d  Navigator.pushNamed(context, '/create');
             },
           ),
 
