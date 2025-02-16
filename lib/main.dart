@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/swipingpage.dart';
 import 'post_widget.dart';
 import 'example_page.dart';
 //import 'add_posts.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/second': (context) => const SecondPage(),
       //  '/create': (context) => const AddPostPage(),
+      //'/second': (context) => const SwipingPage(),
       },
             debugShowCheckedModeBanner: false, // Remove the debug banner
 
