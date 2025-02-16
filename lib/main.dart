@@ -388,6 +388,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   TextEditingController _messageController = TextEditingController();
+  TextEditingController _reportReasonController = TextEditingController(); // Controller for the report reason
 
   void _sendMessage() {
     if (_messageController.text.isNotEmpty) {
@@ -415,10 +416,92 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
+  // Function to show the first confirmation dialog for reporting
+  void _showReportDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Report Chat"),
+          content: const Text("Do you want to report this chat?"),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the first dialog
+                _showReportReasonDialog(); // Show the reason dialog after confirming
+              },
+              child: const Text('Report'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Function to show the second dialog asking for the report reason
+  void _showReportReasonDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Reason for Reporting"),
+          content: TextField(
+            controller: _reportReasonController,
+            decoration: const InputDecoration(hintText: 'Enter your reason for reporting'),
+            maxLines: 1, // Allow multiple lines for the reason
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Handle the report submission logic
+                String reason = _reportReasonController.text.trim();
+                if (reason.isNotEmpty) {
+                  // You can send the report with the reason to the server here
+                  // For now, let's show a confirmation
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Chat reported: $reason")),
+                  );
+                  _reportReasonController.clear(); // Clear the report reason input
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Please provide a reason for reporting.")),
+                  );
+                }
+                Navigator.of(context).pop(); // Close the reason dialog
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chat: ${widget.postDescription}')),
+      appBar: AppBar(
+        title: Text('Chat: ${widget.postDescription}'),
+        actions: [
+          // Report button in the top right corner
+          IconButton(
+            icon: const Icon(Icons.report_problem),
+            onPressed: _showReportDialog,  // Show the report dialog when pressed
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
@@ -430,30 +513,21 @@ class _ChatPageState extends State<ChatPage> {
                 bool isUserMessage = message['isUserMessage'] == 'true';
                 String timestamp = message['timestamp'] ?? '';
 
-                // Place the Align widget here
                 return Align(
-                  alignment:
-                      isUserMessage
-                          ? Alignment.centerRight  // Align to the right for user messages
-                          : Alignment.centerLeft,  // Align to the left for other messages
+                  alignment: isUserMessage
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 16,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 16,
-                    ),
+                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                     decoration: BoxDecoration(
                       color: isUserMessage ? Colors.blue[200] : Colors.grey[300],
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
-                      crossAxisAlignment:
-                          isUserMessage
-                              ? CrossAxisAlignment.end
-                              : CrossAxisAlignment.start,
+                      crossAxisAlignment: isUserMessage
+                          ? CrossAxisAlignment.end
+                          : CrossAxisAlignment.start,
                       children: [
                         Text(
                           message['message'] ?? '',
@@ -499,4 +573,6 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 }
+
+
 
