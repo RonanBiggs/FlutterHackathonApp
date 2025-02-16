@@ -45,7 +45,7 @@ class _SwipingPageState extends State<SwipingPage> {
                     });
                     if (direction == DismissDirection.startToEnd) {
                       print("Swiped left on card $index (Dislike)");
-                    } else if (direction == DismissDirection.endToStartstartToEnd) {
+                    } else if (direction == DismissDirection.endToStart) {
                       print("Swiped right on card $index (Like)");
                     }
                   },
