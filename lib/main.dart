@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'post_widget.dart';
 import 'example_page.dart';
+import 'additional_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'App Name'),
       routes: {
-        '/second': (context) => const SecondPage(),
+        '/second': (context) => const AdditionalPage(),
       },
             debugShowCheckedModeBanner: false, // Remove the debug banner
 
