@@ -30,8 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
+    
+  image_picker: ^0.8.4+4 # Use the latest compatible version
+  geocoding: ^2.0.0 # Use the latest compatible version
+  intl: ^0.18.0 # Use the latest compatible version
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
