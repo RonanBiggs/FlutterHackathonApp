@@ -23,6 +23,7 @@ class _SwipingPageState extends State<SwipingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Swipe left or right!'),
       ),
       body: Center(
