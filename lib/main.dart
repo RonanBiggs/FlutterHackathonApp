@@ -5,6 +5,7 @@ import 'post_widget.dart';
 import 'package:intl/intl.dart';
 import 'add_posts.dart';
 import 'map_page.dart';
+
 //=======
 //import 'example_page.dart';
 //import 'add_posts.dart';
@@ -20,30 +21,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'App Name',
+      title: 'Leftover Link',
       theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: const MyHomePage(title: 'App Name'),
+      home: const MyHomePage(title: 'Leftover Link'),
       routes: {
-//<<<<<<< Updated upstream
-        '/second': (context) => const SwipingPage(),
+        //<<<<<<< Updated upstream
+        //'/second': (context) => const SwipingPage(sentMessages: sentMessages),
         '/map': (context) => const MapPage(),
-      //'/second': (context) => const SwipingPage(),
-//=======
-      //  '/second': (context) => const SecondPage(),
+        //'/second': (context) => const SwipingPage(),
+        //=======
+        //  '/second': (context) => const SecondPage(),
         '/create': (context) => const AddPostPage(),
-//>>>>>>> Stashed changes
+        //>>>>>>> Stashed changes
       },
-            debugShowCheckedModeBanner: false, // Remove the debug banner
-
-
-
+      debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
-
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -54,7 +50,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-    bool isLoggedIn = false;
+  bool isLoggedIn = false;
   List<Map<String, String>> sentMessages = [];
 
   void _loginSuccess() {
@@ -68,58 +64,54 @@ class _MyHomePageState extends State<MyHomePage> {
       isLoggedIn = false;
     });
   }
- // int _counter = 0;
 
- /* void _incrementCounter() {
-    setState(() {
-     _counter++;
-    });
-  }
-  */
   void _sendMessage(String postDescription, String imagePath) {
-  String message = '';
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('Send a Message'),
-        content: TextField(
-          onChanged: (text) {
-            message = text;
-          },
-          decoration: const InputDecoration(hintText: 'Enter your message'),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              if (message.isNotEmpty) {
-                setState(() {
-                  // Add the message to the list with its post description, image path, and timestamp
-                  sentMessages.add({
-                    'postDescription': postDescription,
-                    'message': message,
-                    'isUserMessage': 'true',  // Set it to 'true' for user messages
-                    'imagePath': imagePath,
-                    'timestamp': DateTime.now().toIso8601String(),  // Ensure each message has a timestamp
-                  });
-                });
-              }
-              Navigator.of(context).pop();
+    String message = '';
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Send a Message'),
+          content: TextField(
+            onChanged: (text) {
+              message = text;
             },
-            child: const Text('Send'),
+            decoration: const InputDecoration(hintText: 'Enter your message'),
           ),
-        ],
-      );
-    },
-  );
-}
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                if (message.isNotEmpty) {
+                  setState(() {
+                    // Add the message to the list with its post description, image path, and timestamp
+                    sentMessages.add({
+                      'postDescription': postDescription,
+                      'message': message,
+                      'isUserMessage':
+                          'true', // Set it to 'true' for user messages
+                      'imagePath': imagePath,
+                      'timestamp':
+                          DateTime.now()
+                              .toIso8601String(), // Ensure each message has a timestamp
+                    });
+                  });
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text('Send'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-               leading: IconButton(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        leading: IconButton(
           icon: const Icon(Icons.inbox),
           onPressed: () {
             Navigator.push(
@@ -133,28 +125,37 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
         ),
-        title: Text(widget.title),
-actions: <Widget>[
-
-          IconButton( // Button in the AppBar
+        title: Center(
+          // Center the title
+          child: Text(widget.title),
+        ),
+        actions: <Widget>[
+          IconButton(
+            // Button in the AppBar
             icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.pushNamed(context, '/create');
             },
           ),
-          IconButton( // Button in the AppBar
+          IconButton(
+            // Button in the AppBar
             icon: const Icon(Icons.favorite),
             onPressed: () {
-              Navigator.pushNamed(context, '/second');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SwipingPage(sentMessages: sentMessages),
+                ),
+              );
             },
           ),
-          IconButton( // Button in the AppBar
+          IconButton(
+            // Button in the AppBar
             icon: const Icon(Icons.map),
             onPressed: () {
               Navigator.pushNamed(context, '/map');
             },
           ),
-
           IconButton(
             icon: Icon(isLoggedIn ? Icons.verified_user_rounded : Icons.person),
             onPressed: () {
@@ -174,118 +175,90 @@ actions: <Widget>[
               }
             },
           ),
-
         ],
-        
       ),
       body: Center(
-
         child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Home Page',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Home Page',
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
-            
-             child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Your Feed',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8), 
-              ),
-              
-            
-            child: Column(
-              children: <Widget>[
-                PostWidget(
-                  imagePath: 'assets/groceryhaul4.jpeg',
-                  description: 'groceries in SLO',
-                  onMessage: _sendMessage,
+              Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        'Your Feed',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        margin: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            PostWidget(
+                              imagePath: 'assets/groceryhaul4.jpeg',
+                              description: 'groceries in SLO',
+                              onMessage: _sendMessage,
+                            ),
+                            PostWidget(
+                              imagePath: 'assets/groceryhaul5.jpg',
+                              description: 'extra food!',
+                              onMessage: _sendMessage,
+                            ),
+                            PostWidget(
+                              imagePath: 'assets/groceryhaul6.webp',
+                              description: 'leftover groceries',
+                              onMessage: _sendMessage,
+                            ),
+                            PostWidget(
+                              imagePath: 'assets/groceryhaul7.jpg',
+                              description: 'some extra groceries!',
+                              onMessage: _sendMessage,
+                            ),
+                            PostWidget(
+                              imagePath: 'assets/groceryhaul8.jpg',
+                              description: 'more extra groceries',
+                              onMessage: _sendMessage,
+                            ),
+                            PostWidget(
+                              imagePath: 'assets/groceryhaul9.jpg',
+                              description: 'some more groceries',
+                              onMessage: _sendMessage,
+                            ),
+                            PostWidget(
+                              imagePath: 'assets/grocery10.jpg',
+                              description: 'extra food for anyone who needs!',
+                              onMessage: _sendMessage,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                PostWidget(
-                  imagePath: 'assets/groceryhaul5.jpg',
-                  description: 'extra food!',
-                  onMessage: _sendMessage,
                 ),
-                PostWidget(
-                  imagePath: 'assets/groceryhaul6.webp',
-                  description: 'leftover groceries',
-                  onMessage: _sendMessage,
-                ),
-                PostWidget(
-                  imagePath: 'assets/groceryhaul7.jpg',
-                  description: 'some extra groceries!',
-                  onMessage: _sendMessage,
-                ),
-                PostWidget(
-                  imagePath: 'assets/groceryhaul8.jpg',
-                  description: 'more extra groceries',
-                  onMessage: _sendMessage,
-                ),
-                PostWidget(
-                  imagePath: 'assets/groceryhaul9.jpg',
-                  description: 'some more groceries',
-                  onMessage: _sendMessage,
-                ),
-                PostWidget(
-                  imagePath: 'assets/grocery10.jpg',
-                  description: 'extra food for anyone who needs!',
-                  onMessage: _sendMessage,
-                ),
-              ],
-            ),
-            ),
-          ],
-
-            
+              ),
+            ],
+          ),
         ),
       ),
-            ),
-          ],
-        ),
-        ),
-      
-
-    
-
- /*       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),*/
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -295,56 +268,91 @@ class InboxPage extends StatelessWidget {
 
   const InboxPage({super.key, required this.sentMessages});
 
+  // Method to format the timestamp to "1:32 PM" style
+  String formatTimestamp(String timestamp) {
+    DateTime dateTime = DateTime.parse(timestamp);
+    return DateFormat(
+      'hh:mm a',
+    ).format(dateTime); // Format the timestamp to time format
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Inbox')),
       body: Center(
-        child: sentMessages.isEmpty
-            ? const Text('No messages sent yet.')
-            : ListView.builder(
-                itemCount: sentMessages.length,
-                itemBuilder: (context, index) {
-                  final message = sentMessages[index];
+        child:
+            sentMessages.isEmpty
+                ? const Text('No messages sent yet.')
+                : ListView.builder(
+                  itemCount: sentMessages.length,
+                  itemBuilder: (context, index) {
+                    final message = sentMessages[index];
 
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(16.0),
-                      title: Text(
-                        message['postDescription'] ?? '',
-                        style: const TextStyle(
-                          fontSize: 22,
-                          color: Colors.black,
-                        ),
+                    return Card(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 16,
                       ),
-                      subtitle: Text(
-                        message['message'] ?? '',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                      trailing: CircleAvatar(
-                        radius: 24, // Set the size of the circle
-                        backgroundImage: AssetImage(message['imagePath'] ?? 'assets/default.png'), // Use imagePath from message
-                      ),
-                      onTap: () {
-                        // Navigate to the ChatPage when tapping on the card
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatPage(
-                              postDescription: message['postDescription'] ?? '',
-                              messages: sentMessages.where((msg) => msg['postDescription'] == message['postDescription']).toList(),
-                            ),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.all(16.0),
+                        title: Text(
+                          message['postDescription'] ?? '',
+                          style: const TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
                           ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              message['message'] ?? '',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              formatTimestamp(message['timestamp'] ?? ''),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                        trailing: CircleAvatar(
+                          backgroundImage: AssetImage(
+                            message['imagePath'] ?? '',
+                          ),
+                        ),
+                        onTap: () {
+                          // Open chat for the selected post
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => ChatPage(
+                                    postDescription:
+                                        message['postDescription'] ?? '',
+                                    messages:
+                                        sentMessages
+                                            .where(
+                                              (msg) =>
+                                                  msg['postDescription'] ==
+                                                  message['postDescription'],
+                                            )
+                                            .toList(),
+                                  ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
       ),
     );
   }
@@ -416,8 +424,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-
-
 class ChatPage extends StatefulWidget {
   final String postDescription;
   final List<Map<String, String>> messages;
@@ -434,37 +440,173 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   TextEditingController _messageController = TextEditingController();
+  TextEditingController _reportController =
+      TextEditingController(); // Controller for report reason
+
+  // Method to format the timestamp to "1:32 PM" style
+  String formatTimestamp(String timestamp) {
+    DateTime dateTime = DateTime.parse(timestamp);
+    return DateFormat(
+      'hh:mm a',
+    ).format(dateTime); // Format the timestamp to time format
+  }
 
   void _sendMessage() {
     if (_messageController.text.isNotEmpty) {
       setState(() {
+        // Append the new message to the correct chat entry
         widget.messages.add({
           'postDescription': widget.postDescription,
           'message': _messageController.text,
           'isUserMessage': 'true',
-          'timestamp': DateTime.now().toIso8601String(), // Add timestamp here
+          'timestamp': DateTime.now().toIso8601String(),
+          'imagePath':
+              'assets/groceryhaul4.jpeg', // Example image (can be dynamically set)
         });
       });
+
       _messageController.clear();
     }
   }
 
-  // Function to calculate time passed
-  String _formatTimeAgo(String timestamp) {
-    try {
-      final sentTime = DateTime.parse(timestamp);  // This should always succeed if the timestamp is correct
-      final formattedTime = DateFormat('h:mm a').format(sentTime);
-      return formattedTime;
-    } catch (e) {
-      print("Error parsing date: $e");
-      return "Invalid time";  // Fallback in case of an invalid timestamp
-    }
+  // Show the alert dialog for reporting
+  void _showReportDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Report this conversation'),
+          content: const Text(
+            'Are you sure you want to report this conversation?',
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // After confirming report, show the reason prompt
+                Navigator.of(context).pop(); // Close the first dialog
+                _showReportReasonDialog(); // Show the reason dialog
+              },
+              child: const Text('Yes'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(
+                  context,
+                ).pop(); // Close the dialog without reporting
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Show the dialog asking for the report reason
+  void _showReportReasonDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Enter your report reason'),
+          content: TextField(
+            controller: _reportController,
+            decoration: const InputDecoration(
+              hintText: 'Enter reason for report',
+            ),
+            maxLines: 1, // Allow multiple lines for reason
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // Handle the report submission here, like logging the reason
+                String reportReason = _reportController.text;
+                if (reportReason.isNotEmpty) {
+                  // Perform report action (e.g., save to database, notify admin, etc.)
+                  print(
+                    'Reported with reason: $reportReason',
+                  ); // Example action
+
+                  Navigator.of(context).pop(); // Close the dialog
+                  _showConfirmationDialog(); // Show confirmation message
+                } else {
+                  // Prompt to enter a reason if the field is empty
+                  Navigator.of(context).pop();
+                  _showErrorDialog();
+                }
+              },
+              child: const Text('Submit'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(
+                  context,
+                ).pop(); // Close the dialog without submitting
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Show confirmation dialog after successful report submission
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Report Submitted'),
+          content: const Text(
+            'Thank you for your report. We will review it shortly.',
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the confirmation dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Show error dialog if no reason was entered
+  void _showErrorDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: const Text('Please enter a reason for the report.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the error dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chat: ${widget.postDescription}')),
+      appBar: AppBar(
+        title: Text('Chat: ${widget.postDescription}'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.report_problem),
+            onPressed: _showReportDialog, // Show the report dialog when pressed
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
@@ -474,46 +616,62 @@ class _ChatPageState extends State<ChatPage> {
                 final message = widget.messages[index];
 
                 bool isUserMessage = message['isUserMessage'] == 'true';
-                String timestamp = message['timestamp'] ?? '';
 
-                // Place the Align widget here
                 return Align(
                   alignment:
                       isUserMessage
-                          ? Alignment.centerRight  // Align to the right for user messages
-                          : Alignment.centerLeft,  // Align to the left for other messages
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 16,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 16,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isUserMessage ? Colors.blue[200] : Colors.grey[300],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment:
-                          isUserMessage
-                              ? CrossAxisAlignment.end
-                              : CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          message['message'] ?? '',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(height: 4), // Space between message and time
-                        Text(
-                          _formatTimeAgo(timestamp), // Display the time passed
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[600],
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                  child: IntrinsicWidth(
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 16,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 12, // Compact padding for a smaller bubble
+                      ),
+                      decoration: BoxDecoration(
+                        color:
+                            isUserMessage ? Colors.blue[200] : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        mainAxisSize:
+                            MainAxisSize
+                                .min, // Ensure the row shrinks to fit content
+                        children: [
+                          // Only show the image (avatar) on the left side if it's not a user message
+                          if (!isUserMessage)
+                            CircleAvatar(
+                              backgroundImage: AssetImage(
+                                message['imagePath'] ?? '',
+                              ),
+                            ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  message['message'] ?? '',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  formatTimestamp(message['timestamp'] ?? ''),
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 8),
+                        ],
+                      ),
                     ),
                   ),
                 );
