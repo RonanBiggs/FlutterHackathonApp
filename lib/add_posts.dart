@@ -3,9 +3,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
+import 'package:http/http.dart' as http;
 
-// AddPostPage (Create Post Screen)
+// AddPostPage (Create Post Screen)Error: XMLHttpRequest error.
 class AddPostPage extends StatefulWidget {
+
+
+
+
   const AddPostPage({super.key});
 
   @override
@@ -50,6 +55,40 @@ class _AddPostPageState extends State<AddPostPage> {
       });
     }
   }
+  Future<void> _runPostPhp(String description, String location, String vegan, String vegetarian, String glutenFree, String fruits, String grains, String canned, String protein, String other) async {
+  final headers = {
+    'description': description,
+    "location": location,
+    "vegan": vegan,
+    "vegetarian": vegetarian,
+    "glutenFree": glutenFree,
+    "fruits": fruits,
+    "grains": grains,
+    "canned": canned,
+    "protein": protein,
+    "other": other,
+  };
+  print('Sending headers: $headers');
+  
+  try {
+    final request = http.Request('POST', Uri.parse('http://127.0.0.1:8000/post.php'));
+    request.headers.addAll(headers);
+    
+    // Print the full request details
+    print('Full request:');
+    print('URL: ${request.url}');
+    print('Method: ${request.method}');
+    print('Headers: ${request.headers}');
+    
+    final streamedResponse = await request.send();
+    final response = await http.Response.fromStream(streamedResponse);
+    
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  } catch (e) {
+    print('Error: $e');
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +192,7 @@ class _AddPostPageState extends State<AddPostPage> {
                         'location': _location,
                         'foodTypes': _foodTypes, // Store the boolean list
                       };
-
+                      _runPostPhp(_description, _location, _foodTypes[0].toString(), _foodTypes[1].toString(), _foodTypes[2].toString(), _foodTypes[3].toString(), _foodTypes[4].toString(), _foodTypes[5].toString(), _foodTypes[6].toString(), _foodTypes[7].toString());
                       Navigator.pop(context, postData);
                     }
                   },
