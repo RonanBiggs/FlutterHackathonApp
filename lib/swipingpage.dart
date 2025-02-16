@@ -43,23 +43,23 @@ class _SwipingPageState extends State<SwipingPage> {
                     setState(() {
                       _posts.removeAt(index); // Remove the card from the list
                     });
-                    if (direction == DismissDirection.endToStart) {
+                    if (direction == DismissDirection.startToEnd) {
                       print("Swiped left on card $index (Dislike)");
-                    } else if (direction == DismissDirection.startToEnd) {
+                    } else if (direction == DismissDirection.endToStartstartToEnd) {
                       print("Swiped right on card $index (Like)");
                     }
                   },
                   background: Container(
-                    color: Colors.red,
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.only(left: 20),
-                    child: const Icon(Icons.thumb_down, color: Colors.white),
-                  ),
-                  secondaryBackground: Container(
                     color: Colors.green,
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(right: 20),
                     child: const Icon(Icons.thumb_up, color: Colors.white),
+                  ),
+                  secondaryBackground: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Icon(Icons.thumb_down, color: Colors.white),
                   ),
                   child: Card(
                     elevation: 4,
