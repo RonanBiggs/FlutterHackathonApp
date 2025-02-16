@@ -23,7 +23,7 @@ class _SwipingPageState extends State<SwipingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Swipeable Cards'),
+        title: const Text('Swipe left or right!'),
       ),
       body: Center(
         child: SizedBox(
