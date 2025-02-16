@@ -82,38 +82,39 @@ actions: <Widget>[
               margin: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8), 
               ),
+              
             
             child: Column(
               children: <Widget>[
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'a nice dog',
+                  imagePath: 'assets/groceryhaul4.jpeg',
+                  description: 'groceries in SLO',
                   ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul5.jpg',
+                  description: 'extra food!',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul6.webp',
+                  description: 'leftover groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul7.jpeg',
+                  description: 'some extra groceries!',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul8.jpeg',
+                  description: 'more extra groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul9.jpeg',
+                  description: 'some more groceries',
                 ),
                 PostWidget(
-                  imagePath: 'assets/dog.png',
-                  description: 'this is the same dog',
+                  imagePath: 'assets/groceryhaul10.jpeg',
+                  description: 'extra food for anyone who needs!',
                 ),
               ],
             ),

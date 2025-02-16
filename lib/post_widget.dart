@@ -22,8 +22,9 @@ class PostWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.asset(
-            imagePath, // Path to your local image
-            width: MediaQuery.of(context).size.width/2,
+            imagePath,
+            fit: BoxFit.cover, // Or BoxFit.contain, BoxFit.fill, etc. as needed
+            width: MediaQuery.of(context).size.width/2, // Path to your local image
             height: 100,
           ),
           const SizedBox(height: 8),
