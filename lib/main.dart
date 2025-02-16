@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon/swipingpage.dart';
 import 'post_widget.dart';
-<<<<<<< Updated upstream
-//import 'add_posts.dart';
-=======
+//<<<<<<< Updated upstream
+import 'add_posts.dart';
+//=======
 import 'example_page.dart';
 import 'add_posts.dart';
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 void main() {
   runApp(const MyApp());
 }
@@ -24,14 +24,14 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'App Name'),
       routes: {
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
         '/second': (context) => const SwipingPage(),
       //  '/create': (context) => const AddPostPage(),
       //'/second': (context) => const SwipingPage(),
-=======
+//=======
       //  '/second': (context) => const SecondPage(),
         '/create': (context) => const AddPostPage(),
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
       },
             debugShowCheckedModeBanner: false, // Remove the debug banner
 
