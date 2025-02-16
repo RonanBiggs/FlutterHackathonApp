@@ -21,14 +21,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/second': (context) => const SecondPage(),
       },
-            debugShowCheckedModeBanner: false, // Remove the debug banner
-
-
-
+      debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
-
 
 
 class MyHomePage extends StatefulWidget {
@@ -76,11 +72,11 @@ actions: <Widget>[
           children: <Widget>[
             const Text('posts:'),
             Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(4.0),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.grey, width: 0.5),
+                borderRadius: BorderRadius.circular(4),
               ),
             
             child: Column(
